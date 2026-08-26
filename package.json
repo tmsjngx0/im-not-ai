@@ -20,7 +20,7 @@
     "번역투"
   ],
   "pi": {
-    "skills": ["./codex/skills", "./pi/skills"],
+    "skills": ["./pi/skills"],
     "prompts": ["./prompts"],
     "subagents": {
       "agents": ["./pi/agents"]

@@ -44,27 +44,22 @@ def test_pi_package_exposes_single_call_skill_and_references() -> None:
 
     assert manifest["name"] == "im-not-ai"
     assert "pi-package" in manifest["keywords"]
-    assert pi["skills"] == ["./codex/skills", "./pi/skills"]
+    assert pi["skills"] == ["./pi/skills"]
     assert "extensions" not in pi
     assert "model" not in manifest
     assert "model" not in pi
     _assert_single_call_skill(skill)
-    native_skill = (ROOT / pi["skills"][1]).resolve() / "humanize-korean"
-    assert native_skill != CLAUDE_SKILL
-    assert (native_skill / "SKILL.md").is_file()
 
 
 def test_pi_preserves_the_existing_codex_skill_surface() -> None:
-    pi = _load(ROOT / "package.json")
-    assert (ROOT / pi["pi"]["skills"][0]).resolve() == (ROOT / "codex" / "skills").resolve()
+    assert (ROOT / "codex" / "skills" / "humanize-korean" / "SKILL.md").is_file()
 
 
-def test_copilot_and_pi_use_the_same_single_call_skill() -> None:
-    pi = _load(ROOT / "package.json")
+def test_copilot_and_codex_still_use_the_same_single_call_skill() -> None:
     copilot = _load(ROOT / "plugin.json")
-    pi_root = (ROOT / pi["pi"]["skills"][0]).resolve()
     copilot_root = (ROOT / copilot["skills"][0]).resolve()
-    assert pi_root == copilot_root == (ROOT / "codex" / "skills").resolve()
+    codex_root = (ROOT / "codex" / "skills").resolve()
+    assert copilot_root == codex_root
 
 
 def test_pi_skill_is_agent_skills_compatible() -> None:

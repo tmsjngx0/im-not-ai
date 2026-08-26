@@ -34,7 +34,7 @@ def test_pi_manifest_declares_native_skill_prompts_and_subagents() -> None:
     manifest = _load(ROOT / "package.json")
     pi = manifest["pi"]
 
-    assert pi["skills"] == ["./codex/skills", "./pi/skills"]
+    assert pi["skills"] == ["./pi/skills"]
     assert pi["prompts"] == ["./prompts"]
     assert pi["subagents"]["agents"] == ["./pi/agents"]
     assert "pi-subagents" in manifest["description"]
