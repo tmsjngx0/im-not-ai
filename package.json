@@ -1,0 +1,25 @@
+{
+  "name": "im-not-ai",
+  "version": "2.3.2",
+  "private": true,
+  "description": "Pi에서 AI가 쓴 한글의 번역투와 기계적인 문체를 단일 호출로 자연스럽게 윤문합니다.",
+  "author": "epoko77-ai",
+  "license": "MIT",
+  "homepage": "https://github.com/epoko77-ai/im-not-ai",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/epoko77-ai/im-not-ai.git"
+  },
+  "keywords": [
+    "pi-package",
+    "korean",
+    "humanize",
+    "ai-detector",
+    "translationese",
+    "윤문",
+    "번역투"
+  ],
+  "pi": {
+    "skills": ["./codex/skills"]
+  }
+}

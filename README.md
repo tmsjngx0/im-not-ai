@@ -12,7 +12,7 @@ AI(ChatGPT · Claude · Gemini 등)가 쓴 한글 글을 **내용은 한 글자�
 
 ## 설치 (Install)
 
-> **Claude Code**, **GitHub Copilot CLI**, **OpenAI Codex CLI**, **Gemini CLI**를 지원합니다. 전체 가이드: [`INSTALL.md`](INSTALL.md)
+> **Claude Code**, **GitHub Copilot CLI**, **OpenAI Codex CLI**, **Gemini CLI**, **Pi**를 지원합니다. 전체 가이드: [`INSTALL.md`](INSTALL.md)
 
 **GitHub Copilot CLI — 플러그인 마켓플레이스 (클론 불필요, 권장)**
 
@@ -47,6 +47,14 @@ cd im-not-ai
 - 한쪽만: `./install.sh --claude-only` / `--codex-only` · 제거: `./uninstall.sh`
 - **업데이트**: `./update.sh` — 새 버전 자동 감지 후 `git pull` + 재설치(`--check`는 감지만). 마켓플레이스 설치는 `/plugin update`.
 - Codex는 **단일 콜 경로만** 제공합니다. 다콜 경로(standard 2콜 · heavy 3+콜, 진단·finalize 포함)는 Claude Code 전용.
+
+**Pi — git 패키지 (클론 불필요, 단일 호출 경로)**
+
+```bash
+pi install git:github.com/epoko77-ai/im-not-ai
+```
+
+새 세션에서 `/skill:humanize-korean` 또는 자연어로 "이 글 AI 티 없애줘". 업데이트는 `pi update git:github.com/epoko77-ai/im-not-ai`, 제거는 `pi remove git:github.com/epoko77-ai/im-not-ai`입니다. Pi는 Copilot·Codex와 같은 단일 호출 스킬만 로드하며, 모델은 세션에서 고른 것을 그대로 씁니다.
 
 ## 왜 한글 특화인가
 

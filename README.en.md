@@ -4,7 +4,7 @@
 
 LLMs write Korean that *reads* like translated English. Native speakers spot it instantly, and no amount of prompting ("write naturally in Korean") fixes it — the tells are structural, not stylistic.
 
-**im-not-ai** rewrites AI-written Korean into natural Korean **without changing a single fact** — style, rhythm and phrasing only. MIT licensed, runs as a CLI skill inside Claude Code, GitHub Copilot CLI, OpenAI Codex CLI and Gemini CLI.
+**im-not-ai** rewrites AI-written Korean into natural Korean **without changing a single fact** — style, rhythm and phrasing only. MIT licensed, runs as a CLI skill inside Claude Code, GitHub Copilot CLI, OpenAI Codex CLI, Gemini CLI and Pi.
 
 ```
 "AI 기술을 통해 효율을 높일 수 있다"      →  "AI로 효율을 높인다"
@@ -98,7 +98,15 @@ git clone https://github.com/epoko77-ai/im-not-ai.git
 cd im-not-ai && ./install.sh
 ```
 
-Then paste Korean text and ask for it in plain language ("이 글 AI 티 없애줘"), or call `/humanize-korean`. Copilot and Codex run the single-call path only; the multi-call diagnose/finalize paths are Claude Code-specific. Full guide: [`INSTALL.md`](INSTALL.md).
+**Pi** (single-call git package):
+
+```bash
+pi install git:github.com/epoko77-ai/im-not-ai
+```
+
+In a new Pi session, `/skill:humanize-korean` or ask in plain language. The package does not pin a model.
+
+Then paste Korean text and ask for it in plain language ("이 글 AI 티 없애줘"), or call `/humanize-korean`. Copilot, Codex and Pi run the single-call path only; the multi-call diagnose/finalize paths are Claude Code-specific. Full guide: [`INSTALL.md`](INSTALL.md).
 
 ## Ethics
 

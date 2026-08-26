@@ -43,6 +43,7 @@ im-not-ai/
 ├── README.md / INSTALL.md         # 사용·설치 안내
 ├── RELEASING.md                   # 릴리스 체크리스트 (버전 문자열 전수 + 글로벌 심링크 동기화)
 ├── CONTRIBUTORS.md
+├── package.json                   # Pi 패키지 매니페스트. pi.skills → ./codex/skills (단일 호출)
 ├── .claude-plugin/                # Claude 플러그인 + 마켓플레이스 매니페스트
 │   ├── plugin.json                # skills: ./skills/ · 에이전트는 루트 agents/ 자동탐색
 │   └── marketplace.json           # /plugin marketplace add epoko77-ai/im-not-ai

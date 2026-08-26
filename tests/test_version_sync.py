@@ -2,8 +2,9 @@
 
 RELEASING.md는 "SKILL.md frontmatter가 런타임 SSOT"라고 못박고, 버전 문자열이
 등장하는 위치를 §1 표로 전수 관리한다. Claude 배포 매니페스트
-(`.claude-plugin/*.json`)와 Copilot 배포 매니페스트(`plugin.json`)가
-런타임 SSOT와 어긋나지 않도록 함께 검증한다.
+(`.claude-plugin/*.json`)와 Copilot 배포 매니페스트(`plugin.json`),
+Pi 패키지 매니페스트(`package.json`)가 런타임 SSOT와 어긋나지 않도록
+함께 검증한다.
 
 이 테스트는 그 누락을 사람의 체크리스트 대신 코드가 막는다 —
 `build_quick_rules.py --check`가 룰북 drift를 막는 것과 같은 방식.
@@ -22,6 +23,7 @@ _ROOT = os.path.abspath(os.path.join(_HERE, ".."))
 _SKILL = os.path.join(_ROOT, "skills", "humanize-korean", "SKILL.md")
 _CLAUDE_PLUGIN = os.path.join(_ROOT, ".claude-plugin", "plugin.json")
 _COPILOT_PLUGIN = os.path.join(_ROOT, "plugin.json")
+_PI_PACKAGE = os.path.join(_ROOT, "package.json")
 _MARKETPLACE = os.path.join(_ROOT, ".claude-plugin", "marketplace.json")
 
 # frontmatter의 version 한 줄. PyYAML 의존을 만들지 않기 위해 직접 뽑는다
@@ -65,6 +67,15 @@ class ManifestVersionSyncTests(unittest.TestCase):
             f"— RELEASING.md §1 표대로 함께 갱신할 것",
         )
 
+    def test_pi_package_json_matches_skill(self) -> None:
+        actual = json.loads(_read(_PI_PACKAGE))["version"]
+        self.assertEqual(
+            actual,
+            self.expected,
+            f"package.json version={actual} != SKILL.md {self.expected} "
+            f"— RELEASING.md §1 표대로 함께 갱신할 것",
+        )
+
     def test_marketplace_metadata_matches_skill(self) -> None:
         actual = json.loads(_read(_MARKETPLACE))["metadata"]["version"]
         self.assertEqual(
@@ -95,10 +106,12 @@ class ManifestDescriptionTests(unittest.TestCase):
     def _descriptions(self) -> list[tuple[str, str]]:
         claude_plugin = json.loads(_read(_CLAUDE_PLUGIN))
         copilot_plugin = json.loads(_read(_COPILOT_PLUGIN))
+        pi_package = json.loads(_read(_PI_PACKAGE))
         market = json.loads(_read(_MARKETPLACE))
         out = [
             (".claude-plugin/plugin.json", claude_plugin["description"]),
             ("plugin.json", copilot_plugin["description"]),
+            ("package.json", pi_package["description"]),
         ]
         out.append(("marketplace.json metadata", market["metadata"]["description"]))
         out += [(f"marketplace.json {e['name']}", e["description"]) for e in market["plugins"]]
