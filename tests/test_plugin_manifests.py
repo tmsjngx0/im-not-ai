@@ -21,7 +21,6 @@ def _load(path: Path) -> dict:
 
 
 def _assert_single_call_skill(skill: Path) -> None:
-    assert skill == CODEX_SKILL
     assert skill != CLAUDE_SKILL
     assert (skill / "SKILL.md").is_file()
     for name in SHARED_REFS:
@@ -45,15 +44,22 @@ def test_pi_package_exposes_single_call_skill_and_references() -> None:
 
     assert manifest["name"] == "im-not-ai"
     assert "pi-package" in manifest["keywords"]
-    assert pi["skills"] == ["./codex/skills"]
+    assert pi["skills"] == ["./codex/skills", "./pi/skills"]
     assert "extensions" not in pi
-    assert "prompts" not in pi
     assert "model" not in manifest
     assert "model" not in pi
     _assert_single_call_skill(skill)
+    native_skill = (ROOT / pi["skills"][1]).resolve() / "humanize-korean"
+    assert native_skill != CLAUDE_SKILL
+    assert (native_skill / "SKILL.md").is_file()
 
 
-def test_pi_and_copilot_share_the_same_skill_root() -> None:
+def test_pi_preserves_the_existing_codex_skill_surface() -> None:
+    pi = _load(ROOT / "package.json")
+    assert (ROOT / pi["pi"]["skills"][0]).resolve() == (ROOT / "codex" / "skills").resolve()
+
+
+def test_copilot_and_pi_use_the_same_single_call_skill() -> None:
     pi = _load(ROOT / "package.json")
     copilot = _load(ROOT / "plugin.json")
     pi_root = (ROOT / pi["pi"]["skills"][0]).resolve()

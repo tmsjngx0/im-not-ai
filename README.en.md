@@ -104,9 +104,13 @@ cd im-not-ai && ./install.sh
 pi install git:github.com/epoko77-ai/im-not-ai
 ```
 
-In a new Pi session, `/skill:humanize-korean` or ask in plain language. The package does not pin a model.
+Install the optional multi-call prerequisite first:
 
-Then paste Korean text and ask for it in plain language ("이 글 AI 티 없애줘"), or call `/humanize-korean`. Copilot, Codex and Pi run the single-call path only; the multi-call diagnose/finalize paths are Claude Code-specific. Full guide: [`INSTALL.md`](INSTALL.md).
+```bash
+pi install npm:pi-subagents
+```
+
+In a new Pi session, use `/skill:humanize-korean`, `/humanize`, `/humanize-redo`, or ask in plain language. Pi provides light (1 call), standard (2 calls), and heavy (3+ calls) routes without pinning a model. Heavy chunk processing is capped at four concurrent chunks. Full guide: [`INSTALL.md`](INSTALL.md).
 
 ## Ethics
 

@@ -54,7 +54,7 @@ cd im-not-ai
 pi install git:github.com/epoko77-ai/im-not-ai
 ```
 
-새 세션에서 `/skill:humanize-korean` 또는 자연어로 "이 글 AI 티 없애줘". 업데이트는 `pi update git:github.com/epoko77-ai/im-not-ai`, 제거는 `pi remove git:github.com/epoko77-ai/im-not-ai`입니다. Pi는 Copilot·Codex와 같은 단일 호출 스킬만 로드하며, 모델은 세션에서 고른 것을 그대로 씁니다.
+먼저 `pi install npm:pi-subagents`를 실행한 뒤 새 세션에서 `/skill:humanize-korean`, `/humanize`, `/humanize-redo`, 또는 자연어로 "이 글 AI 티 없애줘"를 사용합니다. Pi는 `light` 1콜, `standard` 2콜, `heavy` 3콜 이상 경로를 제공하며, 모델은 세션에서 고른 것을 그대로 씁니다. 업데이트는 `pi update git:github.com/epoko77-ai/im-not-ai`, 제거는 `pi remove git:github.com/tmsjngx0/im-not-ai`입니다.
 
 ## 왜 한글 특화인가
 
