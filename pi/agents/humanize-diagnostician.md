@@ -81,4 +81,4 @@ description: 정밀(strict) 모드 1단계 진단 에이전트. 글 전체를 �
 
 ## Pi runtime boundary
 
-Do not call other agents. Use only the supplied absolute paths and the Pi `read`, `bash`, and `write` tools. The model is selected by the Pi user and must not be assumed by this agent.
+Do not call other agents. Use only the supplied absolute paths and the Pi `read`, `bash`, and `write` tools. The model is selected by the Pi user and must not be assumed by this agent. When the task supplies `output_path`, write the diagnosis there exactly; this overrides the default `02_diagnosis.md` path.

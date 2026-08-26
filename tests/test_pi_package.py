@@ -67,6 +67,7 @@ def test_pi_runtime_agents_are_package_scoped_and_model_agnostic() -> None:
         assert "${CLAUDE_SKILL_DIR}" not in text
         assert "Claude Code" not in text
         assert "Do not call other agents" in text
+        assert "output_path" in text or "output paths" in text
 
 
 def test_pi_prompt_entry_points_are_available() -> None:
