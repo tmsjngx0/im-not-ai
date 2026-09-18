@@ -134,9 +134,9 @@ test -s <absolute output_path> && echo ok
 ```
 
 If the file is missing or empty, repeat the same call once with the same paths.
-If it is still missing, stop and report the missing path. Never write a missing
-artifact yourself from the child's summary; the gate would then measure your
-text, not the agent's.
+If it is still missing, stop and report the missing path.
+Never write a missing artifact yourself from the child's summary. The gate would
+then measure your text, not the agent's.
 
 ## Phase 2.5: deterministic gate
 
