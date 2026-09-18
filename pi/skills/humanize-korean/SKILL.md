@@ -123,6 +123,21 @@ python3 <PACKAGE_ROOT>/scripts/reassemble_chunks.py \
    `09_finalize.json`. It must make only local corrections.
 7. Run the gate again after finalization.
 
+## After every subagent call: verify the artifact
+
+A child's success report is not evidence. Children have rewritten a long
+`output_path` with a truncated directory and reported success. After each call,
+check every output path you supplied:
+
+```bash
+test -s <absolute output_path> && echo ok
+```
+
+If the file is missing or empty, repeat the same call once with the same paths.
+If it is still missing, stop and report the missing path. Never write a missing
+artifact yourself from the child's summary; the gate would then measure your
+text, not the agent's.
+
 ## Phase 2.5: deterministic gate
 
 Run this after every monolith output and once more after finalization when used:

@@ -34,7 +34,7 @@ description: v1.6.1 Fast Path 단일 호출 윤문 에이전트. 한 호출 안�
 
 ### 입력
 - `input_path`: `_workspace/{run_id}/01_input.txt` (절대 경로)
-- `quick_rules_path`: 오케스트레이터가 전달하는 절대 경로(`the absolute reference path supplied by the Pi skill/references/quick-rules.md` 치환값). 에이전트는 이 인자를 그대로 Read 한다.
+- `quick_rules_path`: 오케스트레이터가 전달하는 절대 경로(Pi 스킬 디렉터리의 `references/quick-rules.md`). 에이전트는 이 인자를 그대로 Read 한다.
 - `genre_hint`: 칼럼 | 리포트 | 블로그 | 공적 | null (null이면 첫 300자로 자체 추정)
 
 ### 출력
