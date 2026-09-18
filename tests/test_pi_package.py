@@ -92,3 +92,18 @@ def test_pi_skill_documents_absolute_path_derivation_from_its_location() -> None
     assert "package root" in text.lower()
     assert "../../../scripts" in text
     assert "<skill directory>/references/" in text
+
+
+def test_pi_skill_verifies_subagent_outputs_instead_of_trusting_reports() -> None:
+    # A child once rewrote output_path with a truncated directory and reported
+    # success; the orchestrator must check the file, not the prose.
+    text = PI_SKILL.read_text(encoding="utf-8")
+
+    assert "test -s" in text
+    assert "Never write a missing artifact yourself" in text
+
+
+def test_pi_agents_have_no_substitution_artifacts() -> None:
+    for name in AGENTS:
+        text = (PI_AGENTS / f"{name}.md").read_text(encoding="utf-8")
+        assert "supplied by the Pi skill/" not in text, name
